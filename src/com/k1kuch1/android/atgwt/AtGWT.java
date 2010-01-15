@@ -21,9 +21,10 @@ public class AtGWT extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        String targetUrl = getIntent().getExtras().getString("android.intent.extra.TEXT");
-        if (targetUrl != null) {
+        
+        Intent intent = getIntent();
+        String targetUrl = intent.getExtras().getString("android.intent.extra.TEXT");
+        if (Intent.ACTION_SEND.equals(intent.getAction())) {
             Uri uri = Uri.parse(GWT_URL + Uri.encode(targetUrl));
         	Intent send_intent = new Intent(Intent.ACTION_VIEW, uri);
         	
